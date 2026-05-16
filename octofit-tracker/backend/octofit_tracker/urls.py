@@ -21,7 +21,6 @@ from . import views
 import os
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
 
 router = DefaultRouter()
 router.register(r'users', views.UserViewSet, basename='user')
