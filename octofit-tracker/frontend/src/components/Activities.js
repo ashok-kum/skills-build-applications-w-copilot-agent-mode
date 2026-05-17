@@ -4,6 +4,7 @@ import getApiBase from '../apiBase'
 export default function Activities() {
   const [items, setItems] = useState([])
   const endpoint = 'activities'
+  // API endpoint: https://$REACT_APP_CODESPACE_NAME-8000.app.github.dev/api/activities/
 
   useEffect(() => {
     let mounted = true
