@@ -4,6 +4,7 @@ import getApiBase from '../apiBase'
 export default function Workouts() {
   const [items, setItems] = useState([])
   const endpoint = 'workouts'
+  // API endpoint: https://$REACT_APP_CODESPACE_NAME-8000.app.github.dev/api/workouts/
 
   useEffect(() => {
     let mounted = true
