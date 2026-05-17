@@ -8,7 +8,8 @@ export default function Users() {
   useEffect(() => {
     let mounted = true
     async function load() {
-      const API_BASE = await getApiBase()
+      const codespace = process.env.REACT_APP_CODESPACE_NAME || window.REACT_APP_CODESPACE_NAME
+      const API_BASE = codespace ? `https://${codespace}-8000.app.github.dev/api` : await getApiBase()
       const url = `${API_BASE}/${endpoint}/`
       console.log('Fetching Users from', url)
       try {
