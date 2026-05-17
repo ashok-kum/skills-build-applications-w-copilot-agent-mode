@@ -4,6 +4,7 @@ import getApiBase from '../apiBase'
 export default function Leaderboard() {
   const [items, setItems] = useState([])
   const endpoint = 'leaderboard'
+  // API endpoint: https://$REACT_APP_CODESPACE_NAME-8000.app.github.dev/api/leaderboard/
 
   useEffect(() => {
     let mounted = true
