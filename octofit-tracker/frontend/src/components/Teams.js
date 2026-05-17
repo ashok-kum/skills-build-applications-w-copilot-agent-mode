@@ -4,6 +4,7 @@ import getApiBase from '../apiBase'
 export default function Teams() {
   const [items, setItems] = useState([])
   const endpoint = 'teams'
+  // API endpoint: https://$REACT_APP_CODESPACE_NAME-8000.app.github.dev/api/teams/
 
   useEffect(() => {
     let mounted = true
