@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react'
+import getApiBase from '../apiBase'
 
 export default function Teams() {
   const [items, setItems] = useState([])
   const endpoint = 'teams'
-  const API_BASE = window.REACT_APP_API_BASE || 'http://localhost:8000/api'
-  const url = `${API_BASE}/${endpoint}/`
 
   useEffect(() => {
-    console.log('Fetching Teams from', url)
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
+    let mounted = true
+    async function load() {
+      const API_BASE = await getApiBase()
+      const url = `${API_BASE}/${endpoint}/`
+      console.log('Fetching Teams from', url)
+      try {
+        const res = await fetch(url)
+        const data = await res.json()
         console.log('Teams raw response:', data)
         const normalized = data && data.results ? data.results : data
         console.log('Teams normalized:', normalized)
-        setItems(Array.isArray(normalized) ? normalized : [])
-      })
-      .catch(err => console.error('Teams fetch error:', err))
-  }, [url])
+        if (mounted) setItems(Array.isArray(normalized) ? normalized : [])
+      } catch (err) {
+        console.error('Teams fetch error:', err)
+      }
+    }
+    load()
+    return () => { mounted = false }
+  }, [endpoint])
 
   const [selected, setSelected] = useState(null)
   const columns = items.length ? Object.keys(items[0]) : []
